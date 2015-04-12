@@ -1,0 +1,164 @@
+@import 'global';
+
+@media print {
+
+	/* Text size */
+
+	html {
+		font-size: 9pt;
+		}
+
+	body {
+		padding: .5cm 1cm;
+		}
+
+	/* /Text size */
+
+	/* Normalize */
+
+	*,
+	*:before,
+	*:after {
+		color: #000 !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+		}
+
+	pre,
+	blockquote {
+		page-break-inside: avoid;
+		}
+
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+		}
+
+	h2,
+	h3 {
+		page-break-after: avoid;
+		}
+
+	img {
+		page-break-inside: avoid;
+		}
+
+	img {
+		max-width: 100% !important;
+		}
+
+	/* /Normalize */
+
+	/* Links */
+
+	.content {
+		a:after {
+			content: " ("  attr(href) ")";
+			font-style: italic;
+			color: $c-main;
+			}
+		}
+
+    /* /Links */
+
+    /* Head
+    -------------------------------------------------- */
+
+	header {
+		border: none;
+		box-shadow: none;
+
+		.container {
+			text-align: center;
+			}
+
+		.nav {
+			display: none;
+			}
+
+		.logo {
+			margin: 0 auto;
+			}
+
+			.logo_img {
+				height: 1cm;
+				width: 1cm;
+				display: inline-block;
+				vertical-align: middle;
+				}
+
+			.logo_tx {
+				color: $c-inv !important; // only exception
+				font-size: 1cm;
+				display: inline-block;
+				vertical-align: middle;
+				}
+		}
+
+    /* /Head */
+
+
+	/* Content
+	-------------------------------------------------- */
+
+	.container {
+		max-width: none;
+		width: 100%;
+		}
+
+	.columns {
+		&.three {
+			display: none;
+			}
+
+		&.nine {
+			width: 100%;
+			margin: 0;
+			}
+		}
+
+    .editor {
+	    text-align: center;
+		&:before {
+			content : "This certainly doesn't make any sense. Please use online version: http://cssg.rocks/editor.html";
+			font-size: 1.8rem;
+			padding: 1cm 2cm;
+			}
+	    }
+
+    .editor > div {
+	    display: none;
+	    }
+
+    #syntax-quick-refernce + pre > code {
+		padding: 0;
+		border: 0 none;
+		background: none;
+		font-size: .9rem;
+	    overflow: hidden;
+	    }
+
+	/* /Content */
+
+
+	/* Footer
+	-------------------------------------------------- */
+
+	footer {
+		background: none;
+		border-top: 2px solid $bg-inv;
+
+		color: $c-main;
+		font-size: 1rem;
+
+		.columns {
+			margin-bottom: $line;
+			}
+		}
+
+
+	/* /Footer */
+
+	}

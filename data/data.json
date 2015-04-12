@@ -1,0 +1,25 @@
+{
+  "title" : "CSSG",
+  "shortname" : "CSSG",
+
+  "author" : "https://github.com/CSSG",
+  "description" : "CSS descriptional meta language",
+  "keywords" : "CSS, layout skeleton, meta-language, html parser, AST tree",
+  "version" : "2.0 release",
+  "versionEditor" : "0.1.0 alpha",
+  "copyright" : "2013 - 2015 CSS-o-Gram",
+  "license" : "MIT license",
+
+  "isSubMenu" : true,
+
+  "docs" : [
+    {"name": "basic", "title" : "CSSG basics" },
+    {"name": "advanced", "title" : "Advanced CSSG" },
+    {"name": "legend", "title" : "Essential legend" }
+  ],
+
+  "nav" : [
+    {"name": "index", "title" : "About" },
+    {"name": "editor", "title" : "Editor" }
+  ]
+}

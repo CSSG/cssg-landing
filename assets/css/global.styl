@@ -1,0 +1,86 @@
+//
+// includable!
+// do not use any rules here!
+//
+
+/* Vars
+---------------------------------------------------------------------------------- */
+
+$font-main = 'Cabin', Tahoma, Geneva, sans-serif;
+$font-aux = 'Ubuntu', Tahoma, Geneva, sans-serif;
+
+$c-main = #333;
+$c-aux = #999;
+$c-inv = #fafafa;
+$c-brand = #4a8fe0;
+$c-inv-brand = #74a5f1;
+
+$bg-main = #fff;
+$bg-aux = #ececef;
+$bg-inv = #222;
+$bg-brand = #2E7DCB;
+
+$pad = 1rem;
+$line = 2.5rem;
+$grid = 2vw;
+
+/* /Vars
+---------------------------------------------------------------------------------- */
+
+
+
+/* Mixins
+---------------------------------------------------------------------------------- */
+
+hover($main, $hover = $main){
+	color: $main;
+
+	&:hover {
+		color: $hover;
+		}
+	}
+
+trs($param){
+	transition: $param .15s ease-out;
+	}
+
+tdB($width = 2px){
+	text-decoration: none;
+	border-bottom: $width solid;
+
+	&:hover {
+		border-color: transparent;
+		}
+	}
+
+tdN(){
+	text-decoration: none;
+	}
+
+rad(){
+	border-radius: 6px;
+	}
+
+shB(){
+	box-shadow: 0 1px 1px rgba(0,0,0,.8);
+	}
+
+	shB-l(){
+		box-shadow: 0 1px 1px 1px rgba(0,0,0,.4);
+		}
+
+shT(){
+	box-shadow: 0 -1px 1px rgba(0,0,0,.8);
+	}
+
+shI(){
+	box-shadow: inset 0 1px 2px rgba(0,0,0,.8);
+	}
+
+va(){
+	top: 50%;
+	transform: translateY(-50%);
+	}
+
+/* /Mixins
+---------------------------------------------------------------------------------- */

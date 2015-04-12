@@ -1,0 +1,20 @@
+<header>
+    <div class="container">
+        {{! passing cssg.json data inside title template }}
+        <a class="logo" href="/" title="{{globWithContext "includes/title.hbs" cssg}}">
+            <span class="logo_img">
+                <img src="{{assets}}/i/logo.png" alt="CSSG logo"/>
+            </span>
+            <span class="logo_tx">
+                {{shortname}}
+            </span>
+        </a>
+        <nav class="nav">
+            {{> mainMenu}}
+
+            <div class="share">
+                <a class="share_i __github" href="https://github.com/CSSG">Github repo</a>
+            </div>
+        </nav>
+    </div>
+</header>

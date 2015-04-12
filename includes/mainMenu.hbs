@@ -1,0 +1,17 @@
+{{#each pages}}
+    {{#is data.section "core"}}
+        {{#is this.dest 'public/index.html'}}
+            <a class="nav_i
+                {{#is ../../../page.dest ../this.dest}} __active{{/is}}
+                {{#startsWith 'public/docs' ../../../page.dest}} __active{{/startsWith}}
+                " href="/index.html">About</a>
+        {{/is}}
+    {{/is}}
+{{/each}}
+{{#each pages}}
+    {{#is data.section "core"}}
+        {{^is this.dest 'public/index.html'}}
+            <a class="nav_i {{#is ../../../page.dest ../this.dest}} __active{{/is}}" href="/{{relative ../../../page.dest ../this.dest}}">{{data.title}}</a>
+        {{/is}}
+    {{/is}}
+{{/each}}

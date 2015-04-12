@@ -1,0 +1,8 @@
+<menu class="menu __hidden js-menu">
+    {{#each docs}}
+        <li class="menu_i">
+            <a class="menu_a" href="/docs/{{name}}.html" title="{{title}}">{{title}}</a>
+            <ul class="menu_list js-menu_list __{{name}}"></ul>
+        </li>
+    {{/each}}
+</menu>

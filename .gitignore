@@ -1,0 +1,16 @@
+## dev deps
+.idea
+ngrok.exe
+bower_components
+node_modules
+
+## dist
+public
+public.old
+
+## resources
+cssg
+editor
+
+## logging
+*.log

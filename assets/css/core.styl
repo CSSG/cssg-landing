@@ -1,0 +1,435 @@
+@import 'global';
+
+/* Core
+---------------------------------------------------------------------------------- */
+
+html {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	}
+
+body {
+	padding: 0;
+	margin: 0;
+
+	line-height: 1.6;
+	color: $c-main;
+	background: $bg-main;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	overflow-y: scroll;
+
+	font-family: $font-main;
+	font-size: 1.6rem;
+	}
+
+::selection {
+	background: lightness($bg-brand, 40%);
+	}
+
+::-moz-selection {
+	background: lightness($bg-brand, 40%);
+	}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $font-aux;
+	}
+
+.container {
+	position: relative;
+
+	padding: 0 $grid;
+	margin: 0 auto;
+	max-width: 1200px;
+	}
+
+.columns {
+	position: relative;
+
+	&:after {
+		content: ".";
+		display: block;
+		visibility: hidden;
+		font-size: 1px;
+		}
+	}
+
+/* Header
+-------------------------------------------------- */
+
+header {
+	padding: $pad 0;
+
+	user-select: none;
+	background: $bg-brand;
+	shB();
+	}
+
+
+/* Logo */
+
+@keyframes anLogo {
+	0% {
+		transform: perspective(500px) rotateY(0deg);
+		}
+	40% {
+		transform: perspective(500px) rotateY(-45deg);
+		}
+	70% {
+		transform: perspective(500px) rotateY(270deg);
+		}
+	80% {
+		transform: perspective(500px) rotateY(440deg);
+		}
+	100% {
+		transform: perspective(500px) rotateY(360deg);
+		}
+	}
+
+.logo {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: $grid * 4;
+
+	tdN();
+	hover($c-inv);
+	}
+
+	.logo_img {
+		display: inline-block;
+		vertical-align: middle;
+
+		width: 40px;
+		height: 40px;
+		padding: 5px;
+		rad();
+		border: 1px solid $bg-main;
+		background: $bg-brand;
+
+		& > img {
+			width: 100%;
+			height: 100%;
+			}
+
+		// local context
+		.header:hover & {
+			will-change: transform;
+			}
+
+		.logo:hover & {
+			animation: anLogo .6s ease-out;
+			}
+
+		@media screen and (min-width: 720px) {
+			width: 60px;
+			height: 60px;
+			}
+		}
+
+	.logo_tx {
+		display: none;
+		padding: 0 $pad;
+
+		letter-spacing: .03ex;
+		font-size: 3.2rem;
+
+		// local context
+		.logo:hover & {
+
+			}
+
+		@media screen and (min-width: 550px) {
+			display: inline-block;
+			vertical-align: middle;
+			}
+
+		@media screen and (min-width: 720px) {
+			font-size: 4.4rem;
+			}
+		}
+
+/* /Logo */
+
+/* Nav */
+
+@keyframes anBorderBottom {
+	0% { bottom: -8px; }
+	40% { bottom: -24px; }
+	65% { bottom: -8px; }
+	80% { bottom: -16px; }
+	100% { bottom: -12px; }
+	}
+
+.nav {
+	position: absolute;
+	right: $grid;
+	va();
+
+	font-size: 1.8rem;
+
+	@media screen and (min-width: 720px) {
+		font-size: 2.2rem;
+		}
+	}
+
+	.nav_i {
+		$b = 8px;
+
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+
+		hover($c-inv);
+		tdB($b);
+		border-color: transparent;
+
+		&:after {
+			content: "";
+			display: block;
+			height: $b;
+			width: 100%;
+			right: 0;
+			position: absolute;
+			bottom: -($b);
+
+			background: $c-inv;
+			}
+
+		// hover
+		&:hover {
+
+			&:after {
+				animation: anBorderBottom .3s ease-out;
+				animation-fill-mode: forwards;
+				}
+			}
+
+		// active
+		&.__active {
+
+			&:after {
+				background: $c-inv-brand;
+				}
+
+			// active hover
+			&:hover {
+				cursor: default;
+
+				&:after {
+					animation: none;
+					}
+				}
+			}
+
+		// self context
+		& + & {
+			margin-left: $grid;
+			}
+		}
+
+/* /Nav */
+
+
+/* Share */
+
+.share {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: $grid * 2;
+
+	min-width: 50px;
+	padding: $pad $grid;
+
+	font-size: 1.2rem;
+	background: $bg-inv;
+	border: 1px solid $bg-main;
+
+	rad();
+	shI();
+	}
+
+	.share_i {
+		hover($c-inv, $c-inv-brand);
+		tdN();
+		trs(color);
+
+		&.__github {
+
+			}
+		}
+
+/* /Share */
+
+/* /Header */
+
+
+/* Content
+-------------------------------------------------- */
+
+/* Columns */
+
+.content {
+	padding: $pad*4 0 0;
+	margin-bottom: $pad*4;
+	}
+
+/* /Columns */
+
+/* Menu */
+
+.sticky-wrapper {
+	@media screen and (max-width: 550px) {
+		margin-bottom: $pad * 2;
+		}
+	}
+
+.menu {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	font-size: 1.2rem;
+	background: $bg-main;
+
+	trs(box-shadow);
+	transform: translateZ(0); // move to separate layer
+	margin-bottom: $pad * 2;
+
+	&.__hidden {
+		opacity: 0;
+		visibility: hidden;
+		}
+
+	&.__sticky {
+
+		@media screen and (max-width: 550px) {
+			position: relative !important;
+			top: auto !important;
+			width: auto !important;
+			}
+
+		@media screen and (min-width: 550px) {
+			position: fixed;
+			left: auto;
+
+			shB-l();
+			}
+		}
+
+	@media screen and (min-width: 550px) {
+		margin-left: -($grid);
+		width: calc(100% + 2vw);
+		}
+
+	@media screen and (min-width: 640px) {
+		font-size: 1.4rem;
+		}
+
+	@media screen and (min-width: 720px) {
+		font-size: 1.8rem;
+		}
+	}
+
+	.menu_i {
+		display: block;
+
+		margin: 0;
+		padding: 0;
+
+		trs(opacity);
+		opacity: 1;
+
+		// local context
+		.__sticky & {
+			opacity: .4;
+			}
+
+		.__sticky:hover & {
+			opacity: 1;
+			}
+		}
+
+	.menu_list {
+		margin: 0;
+		border-bottom: 1px solid $bg-inv;
+
+		list-style: none;
+		font-size: .75em;
+		background: $bg-aux;
+
+
+		li {
+			margin: 0;
+			}
+
+		a {
+			display: block;
+			padding: ($pad / 2) $grid ($pad / 2) ($grid / 2);
+			border-left: ($grid / 2) solid transparent;
+			hover($c-main);
+			trs(border-color);
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			&:hover {
+				border-color: $bg-brand;
+				}
+			}
+
+		&:empty {
+			display: none;
+			}
+
+		@media screen and (max-width: 720px) {
+			display: none;
+			}
+		}
+
+	.menu_a {
+		display: block;
+		padding: $pad $grid;
+		border-bottom: 1px solid $bg-inv;
+		margin: 0;
+		tdN();
+		hover($c-main);
+		trs(background);
+
+		.menu_i:hover & {
+			background: $bg-aux;
+			}
+		}
+
+/* /Menu */
+
+/* /Content */
+
+
+/* Footer
+-------------------------------------------------- */
+
+footer {
+	padding: $pad 0;
+	color: $c-inv;
+	background: $bg-inv;
+	font-size: 1.2rem;
+
+	@media screen and (min-width: 550px) {
+		.columns:last-child {
+			text-align: right;
+			}
+		}
+
+	@media screen and (min-width: 640px) {
+		font-size: 1.6rem;
+		}
+	}
+
+/* /Footer */
+
+
+/* /Core
+---------------------------------------------------------------------------------- */

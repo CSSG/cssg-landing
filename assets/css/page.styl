@@ -1,0 +1,82 @@
+@import 'global';
+
+/* Content
+-------------------------------------------------- */
+
+.content {
+
+	// hide h1 in markdown
+	h1:nth-of-type(n+2) {
+		display: none
+		}
+
+	blockquote {
+		padding: $pad $grid;
+		margin: $line 0;
+		background: $bg-aux;
+		border-left: $grid solid $bg-brand;
+
+		p {
+			margin: 0;
+
+			& + & {
+				margin-top: $line;
+				}
+			}
+		}
+
+	pre {
+		overflow: hidden;
+		rad();
+		}
+
+	pre, code {
+		font-size: 1.3rem;
+		}
+
+	pre > code {
+		padding: $pad $grid;
+		overflow: auto;
+		}
+
+	code {
+		background: $bg-aux;
+		border-color: $bg-brand;
+		}
+	}
+
+/* /Content */
+
+
+/* Editor
+-------------------------------------------------- */
+
+.editor {
+
+	h1 {
+		display: none;
+		}
+
+	button {
+		letter-spacing: 0;
+		text-transform: none;
+		font-weight: normal;
+		height: auto;
+		}
+
+	.cssg-converter_setting {
+
+		input {
+			margin: 0;
+			margin-right: .5vw;
+
+			vertical-align: -.2rem;
+			}
+
+		label {
+			font-weight: normal;
+			}
+		}
+	}
+
+/* /Editor */

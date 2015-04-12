@@ -1,0 +1,30 @@
+<div class="row">
+
+    {{#isSubMenu}}
+        <div class="three columns">
+            <!-- submenu -->
+            {{> subMenu}}
+            <!-- /submenu -->
+        </div>
+    {{/isSubMenu}}
+
+    <div class="nine columns">
+
+{{#markdown}}
+{{!
+    it's a hack
+    we should have used 'glob page.src' helper
+    but it works incorrectly with '<, >' symbols
+    wich are essential in markdown syntax
+
+    same pattern used in index.hbs to render markdown
+
+    refer to Gruntfile.js 'includes'
+    and handlebars-helper-include
+    for details
+}}
+{{include page.basename}}
+{{/markdown}}
+
+    </div>
+</div>

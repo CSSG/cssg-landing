@@ -1,0 +1,27 @@
+---
+title : About
+
+content : README
+section : core
+---
+
+<div class="row">
+
+    {{#isSubMenu}}
+    <div class="three columns">
+        <!-- submenu -->
+        {{> subMenu}}
+        <!-- /submenu -->
+    </div>
+    {{/isSubMenu}}
+
+    <div class="nine columns">
+
+        <h1>About</h1>
+
+{{#markdown}}
+{{include content}}
+{{/markdown}}
+
+    </div>
+</div>
