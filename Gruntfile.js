@@ -85,6 +85,11 @@ module.exports = function (grunt) {
                     return dest + '/editor.hbs';
                 }
                 //, flatten: true
+            },
+            public: {
+                expand: true,
+                src: ['public/**'],
+                dest: '../'
             }
         },
         clean: {
@@ -154,6 +159,20 @@ module.exports = function (grunt) {
                     ],
                     '<%= paths.js.dest %>/editor.js': ['<%= config.editorSrc.dest %>/js/cssg.js']
                 }
+            }
+        },
+        htmlmin: {
+            all: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: './public',
+                    src: '**/*.html',
+                    dest: 'public'
+                }]
             }
         },
         stylus: {
@@ -365,9 +384,9 @@ module.exports = function (grunt) {
     grunt.registerTask('tpl', [
         'clean:html',
         'editorTpl',
-        'assemble'
+        'assemble',
+        'htmlmin'
     ]);
-
 
     //
     // build site
@@ -388,6 +407,10 @@ module.exports = function (grunt) {
             ]);
         }
     });
+
+    //
+    // publish site
+    grunt.registerTask('publish', ['copy:public']);
 
     //
     // developing tasks
