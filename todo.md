@@ -1,9 +1,9 @@
 # TODO
 
-- social share
-- cache favicon
-- html minification
 - smart quick menu
-- 'about' page
-- svg icons
+- hamburger icon
+- fix dom level in editor
+- disclaimer
+- cache favicon
+- better 'about' page
 - localstorage save editor data

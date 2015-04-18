@@ -20,9 +20,12 @@ $(function(){
         var mainOffsetTop = main.children().first().offset().top - header.outerHeight();
         var mainOffsetBot = document.body.offsetHeight - main.outerHeight() - mainOffsetTop;
 
-        var menuOffset = Math.abs( parseInt(menu.css('margin-left')) );
+        var menuOffset = function(){
+            return Math.abs( parseInt(menu.css('margin-left')) );
+        };
+
         var menuWidth = function(){
-            return menu.parent().width() + menuOffset;
+            return menu.parent().width() + menuOffset();
         };
 
         //

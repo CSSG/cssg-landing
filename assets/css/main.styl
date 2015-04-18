@@ -1,4 +1,4 @@
-@import 'global';
+@import 'vars';
 
 /* Core
 ---------------------------------------------------------------------------------- */
@@ -37,6 +37,14 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family: $font-aux;
 	}
+
+[class^="icon-"]{
+
+	}
+
+	[class^="icon-"] + span {
+
+		}
 
 .container {
 	position: relative;
@@ -241,23 +249,68 @@ header {
 	margin-left: $grid * 2;
 
 	min-width: 50px;
-	padding: $pad $grid;
+	padding: ($pad / 2) ($grid / 2);
 
-	font-size: 1.2rem;
+	font-size: 1.8rem;
 	background: $bg-inv;
 	border: 1px solid $bg-main;
 
 	rad();
 	shI();
+
+	@media screen and (min-width: 640px) {
+		font-size: 2rem;
+		}
+
+	@media screen and (min-width: 720px) {
+		font-size: 2.4rem;
+		}
 	}
 
 	.share_i {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+
 		hover($c-inv, $c-inv-brand);
 		tdN();
 		trs(color);
 
-		&.__github {
+		// self margin
+	  	& + & {
+			margin-left: ($grid / 4);
+			}
 
+		&.__github {
+			}
+
+		&.__facebook {
+			}
+
+		&.__twitter {
+			}
+
+		// icon hover
+		i:before {
+
+			}
+			&:hover > i:before {
+				transform: scale(1.4);
+				}
+
+		// text next to icon
+		i + span {
+			font-size: .7em;
+			margin-right: ($grid / 4);
+			vertical-align: ($pad / 3);
+
+			display: none;
+			}
+
+		@media screen and (min-width: 860px) {
+			i + span {
+				display: inline;
+				}
 			}
 		}
 

@@ -23,6 +23,11 @@ module.exports = function (grunt) {
             src : "assets/i",
             dest : "public/assets/i"
         },
+        fonts : {
+            css : "assets/fonts/css",
+            src : "assets/fonts/font",
+            dest : "public/assets/font"
+        },
         js : {
             src : "assets/js",
             dest : "public/assets/js"
@@ -68,6 +73,12 @@ module.exports = function (grunt) {
                 src: 'favicon.ico',
                 dest: 'public'
                 //, flatten: true
+            },
+            fonts: {
+                expand: true,
+                cwd: '<%= paths.fonts.src %>',
+                src: '**',
+                dest: '<%= paths.fonts.dest %>'
             },
             jsBower: {
                 expand: true,
@@ -138,16 +149,14 @@ module.exports = function (grunt) {
             css: {
                 files: ['<%= paths.css.src %>/*.styl'],
                 tasks: ['stylus']
-                //, options: {
-                //    livereload: true
-                //}
             },
             js: {
                 files: ['<%= paths.js.src %>/*.js'],
                 tasks: ['js']
-                //, options: {
-                //    livereload: true
-                //}
+            },
+            tpl: {
+                files: ['includes/**/*.hbs', 'layouts/**/*.hbs', 'data/*.json'],
+                tasks: ['assemble']
             }
         },
         uglify: {
@@ -188,8 +197,9 @@ module.exports = function (grunt) {
                     'public/assets/css/main.css': [
                         '<%= paths.css.vendor %>/*.css',
                         '<%= config.editorSrc.dest %>/css/*.css',
-                        '<%= paths.css.src %>/core.styl',
-                        '<%= paths.css.src %>/page.styl',
+                        '<%= paths.fonts.css %>/cssg.css',
+                        '<%= paths.css.src %>/main.styl',
+                        '<%= paths.css.src %>/override.styl',
                         '<%= paths.css.src %>/print.styl'
                     ]
                 }
@@ -205,7 +215,9 @@ module.exports = function (grunt) {
         browserSync: {
             bsFiles: {
                 src : [
-                    '<%= paths.css.dest %>/*.css'
+                    '<%= paths.css.dest %>/*.css',
+                    '<%= paths.js.dest %>/*.js',
+                    'public/**/*.html'
                     ]
             },
             options: {
@@ -323,7 +335,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('css', [
         'clean:css',
-        'stylus'
+        'stylus',
+        'copy:fonts'
     ]);
 
     grunt.registerTask('js', [
