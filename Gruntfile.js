@@ -397,8 +397,7 @@ module.exports = function (grunt) {
     grunt.registerTask('tpl', [
         'clean:html',
         'editorTpl',
-        'assemble',
-        'htmlmin'
+        'assemble'
     ]);
 
     //
