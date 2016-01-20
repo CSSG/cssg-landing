@@ -11,38 +11,41 @@ module.exports = function (grunt) {
     // specific tasks
     grunt.loadNpmTasks('assemble');
 
-
     // paths
     var paths = {
-        css : {
-            src : "assets/css",
-            dest : "public/assets/css",
-            vendor : "bower_components/skeleton/css"
+        css: {
+            src: "assets/css",
+            dest: "public/assets/css",
+            vendor: "node_modules/skeleton.css"
         },
-        img : {
-            src : "assets/i",
-            dest : "public/assets/i"
+
+        img: {
+            src: "assets/i",
+            dest: "public/assets/i"
         },
-        fonts : {
-            css : "assets/fonts/css",
-            src : "assets/fonts/font",
-            dest : "public/assets/font"
+
+        fonts: {
+            css: "assets/fonts/css",
+            src: "assets/fonts/font",
+            dest: "public/assets/font"
         },
-        js : {
-            src : "assets/js",
-            dest : "public/assets/js"
+
+        js: {
+            src: "assets/js",
+            dest: "public/assets/js"
         }
     };
 
     // all others
     var config = {
-        cssgSrc : {
-            src : "https://github.com/CSSG/css-o-gram.git",
-            dest : "cssg"
+        cssgSrc: {
+            src: "https://github.com/CSSG/css-o-gram.git",
+            dest: "cssg"
         },
-        editorSrc : {
-            src : "https://github.com/CSSG/css-o-gram_tool.git",
-            dest : "editor"
+
+        editorSrc: {
+            src: "https://github.com/CSSG/css-o-gram_tool.git",
+            dest: "editor"
         }
     };
 
@@ -52,7 +55,6 @@ module.exports = function (grunt) {
     //
 
     grunt.initConfig({
-
         // project config
         paths: paths,
 
@@ -67,6 +69,7 @@ module.exports = function (grunt) {
                 dest: '<%= paths.img.dest %>'
                 //, flatten: true
             },
+
             favicon: {
                 expand: true,
                 cwd: 'assets',
@@ -74,35 +77,40 @@ module.exports = function (grunt) {
                 dest: 'public'
                 //, flatten: true
             },
+
             fonts: {
                 expand: true,
                 cwd: '<%= paths.fonts.src %>',
                 src: '**',
                 dest: '<%= paths.fonts.dest %>'
             },
-            jsBower: {
+
+            jsDeps: {
                 expand: true,
-                cwd: 'bower_components/jquery/dist',
+                cwd: 'node_modules/jquery/dist',
                 src: ['jquery.min.js', 'jquery.min.map'],
                 dest: '<%= paths.js.dest %>'
                 //, flatten: true
             },
+
             editorTpl: {
                 expand: true,
                 cwd: '<%= config.editorSrc.dest %>',
                 src: 'index.html',
                 dest: 'includes',
-                rename: function(dest, src) {
+                rename: function (dest, src) {
                     return dest + '/editor.hbs';
                 }
                 //, flatten: true
             },
+
             public: {
                 expand: true,
                 src: ['public/**'],
                 dest: '../'
             }
         },
+
         clean: {
             css: {
                 files: [{
@@ -112,6 +120,7 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
+
             img: {
                 files: [{
                     dot: true,
@@ -120,6 +129,7 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
+
             js: {
                 files: [{
                     dot: true,
@@ -128,6 +138,7 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
+
             html: {
                 files: [{
                     dot: true,
@@ -136,6 +147,7 @@ module.exports = function (grunt) {
                     ]
                 }]
             },
+
             editorTpl: {
                 files: [{
                     dot: true,
@@ -145,37 +157,43 @@ module.exports = function (grunt) {
                 }]
             }
         },
+
         watch: {
             css: {
                 files: ['<%= paths.css.src %>/*.styl'],
                 tasks: ['stylus']
             },
+
             js: {
                 files: ['<%= paths.js.src %>/*.js'],
                 tasks: ['js']
             },
+
             tpl: {
                 files: ['includes/**/*.hbs', 'layouts/**/*.hbs', 'data/*.json'],
                 tasks: ['assemble']
             }
         },
+
         uglify: {
             all: {
                 files: {
                     '<%= paths.js.dest %>/main.js': [
-                        'bower_components/jquery-sticky/jquery.sticky.js',
+                        'node_modules/jquery-sticky/jquery.sticky.js',
                         '<%= paths.js.src %>/main.js'
                     ],
                     '<%= paths.js.dest %>/editor.js': ['<%= config.editorSrc.dest %>/js/cssg.js']
                 }
             }
         },
+
         htmlmin: {
             all: {
                 options: {
                     removeComments: true,
                     collapseWhitespace: true
                 },
+
                 files: [{
                     expand: true,
                     cwd: './public',
@@ -184,15 +202,19 @@ module.exports = function (grunt) {
                 }]
             }
         },
+
         stylus: {
             all: {
                 options: {
                     use: [
-                        function() { return require('autoprefixer-stylus')({
-                            browsers: ['last 2 versions']
-                        }); }
+                        function () {
+                            return require('autoprefixer-stylus')({
+                                browsers: ['last 2 versions']
+                            });
+                        }
                     ]
                 },
+
                 files: {
                     'public/assets/css/main.css': [
                         '<%= paths.css.vendor %>/*.css',
@@ -203,6 +225,7 @@ module.exports = function (grunt) {
                         '<%= paths.css.src %>/print.styl'
                     ]
                 }
+
                 //files: [{
                 //    expand: true,
                 //    cwd: '<%= paths.css.src %>',
@@ -212,14 +235,16 @@ module.exports = function (grunt) {
                 //}]
             }
         },
+
         browserSync: {
             bsFiles: {
-                src : [
+                src: [
                     '<%= paths.css.dest %>/*.css',
                     '<%= paths.js.dest %>/*.js',
                     'public/**/*.html'
-                    ]
+                ]
             },
+
             options: {
                 watchTask: true,
                 server: {
@@ -227,6 +252,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         // clone cssg repo
         gitclone: {
             cssg: {
@@ -236,6 +262,7 @@ module.exports = function (grunt) {
                     directory: '<%= config.cssgSrc.dest %>'
                 }
             },
+
             editor: {
                 options: {
                     repository: '<%= config.editorSrc.src %>',
@@ -244,19 +271,22 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         // refresh repo
         gitpull: {
             cssg: {
                 options: {
-                    cwd : '<%= config.cssgSrc.dest %>'
+                    cwd: '<%= config.cssgSrc.dest %>'
                 }
-            }            ,
+            },
+
             editor: {
                 options: {
-                    cwd : '<%= config.editorSrc.dest %>'
+                    cwd: '<%= config.editorSrc.dest %>'
                 }
             }
         },
+
         // assemble task
         assemble: {
             options: {
@@ -276,6 +306,7 @@ module.exports = function (grunt) {
                     tables: false
                 }
             },
+
             //core: {
             //    options: {
             //        layout: 'default.hbs'
@@ -291,12 +322,14 @@ module.exports = function (grunt) {
             //        './public/docs/': ['__docs/*.md']
             //    }
             //},
+
             site: {
                 options: {
                     layout: 'default.hbs',
                     // tricky markdown conversion
                     includes: ['cssg/*.md']
                 },
+
                 files: [
                     // common layout
                     {
@@ -341,7 +374,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('js', [
         'clean:js',
-        'copy:jsBower',
+        'copy:jsDeps',
         'uglify'
     ]);
 
@@ -349,8 +382,8 @@ module.exports = function (grunt) {
     // fetch resources
 
     // cssg
-    grunt.registerTask('cssg', function(){
-        if(!grunt.file.exists(grunt.config.get('config').cssgSrc.dest)){
+    grunt.registerTask('cssg', function () {
+        if (!grunt.file.exists(grunt.config.get('config').cssgSrc.dest)) {
             grunt.log.write('No CSSG repo detected, running git clone...');
             grunt.task.run(['gitclone:cssg']);
         } else {
@@ -360,8 +393,8 @@ module.exports = function (grunt) {
     });
 
     // editor
-    grunt.registerTask('editor', function(){
-        if(!grunt.file.exists(grunt.config.get('config').editorSrc.dest)){
+    grunt.registerTask('editor', function () {
+        if (!grunt.file.exists(grunt.config.get('config').editorSrc.dest)) {
             grunt.log.write('No CSSG editor repo detected, running git clone...');
             grunt.task.run(['gitclone:editor']);
         } else {
@@ -372,7 +405,7 @@ module.exports = function (grunt) {
 
     //
     // editor manipulation
-    grunt.registerTask('editorReplace', function(){
+    grunt.registerTask('editorReplace', function () {
         var htmlString = grunt.file.read('includes/editor.hbs');
         var parsedHTML = $.load(htmlString);
         var newHTML = '<div class="cssg-converter-container">' + parsedHTML('.cssg-converter-container').html() + '</div>';
@@ -403,9 +436,9 @@ module.exports = function (grunt) {
     //
     // build site
 
-    grunt.registerTask('build', function(){
+    grunt.registerTask('build', function () {
         var fetch = grunt.option('fetch');
-        if(fetch){
+        if (fetch) {
             grunt.task.run([
                 'cssg',
                 'editor',
@@ -438,5 +471,4 @@ module.exports = function (grunt) {
         'browserSync',
         'watch:css'
     ]);
-
 };
