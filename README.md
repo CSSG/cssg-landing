@@ -1,5 +1,10 @@
 # CSSG landing page
 
+-----
+### obsolete repo, not maintained anymore
+### proceed to [cssg.rocks](http://cssg.rocks) instead
+-----
+
 Static site built with [assemble.io](http://assemble.io/).
 
 
